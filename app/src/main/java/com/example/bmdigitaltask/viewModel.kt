@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class viewModel : ViewModel() {
 
     private val _products = MutableLiveData<List<itemProducts>>(emptyList())
-    val products: LiveData<List<itemProducts>> =  _products
+    val productsList: LiveData<List<itemProducts>> =  _products
 
     private val _loading = MutableLiveData<Boolean>(true)
     val loading: LiveData<Boolean> = _loading

@@ -35,7 +35,7 @@ import coil.compose.AsyncImage
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun productPage(viewModel: viewModel) {
-val products = viewModel.products.observeAsState(initial = emptyList())
+val productsList = viewModel.productsList.observeAsState(initial = emptyList())
     val loading = viewModel.loading.observeAsState(initial = true)
 
 
@@ -50,8 +50,8 @@ val products = viewModel.products.observeAsState(initial = emptyList())
 
     } else {
                 LazyColumn(Modifier.padding(padding)) {
-                    items(products) {
-                        product -> productItem(product)
+                    items(productsList) {
+                        item -> productItem(item)
                     }
                 }
             }
@@ -60,7 +60,7 @@ val products = viewModel.products.observeAsState(initial = emptyList())
 }
 
 @Composable
-fun productItem(product: products) {
+fun productItem(product: itemProducts) {
 
     Card(
         modifier = Modifier
@@ -73,8 +73,8 @@ fun productItem(product: products) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
-                model = products.image,
-                contentDescription = products.title,
+                model = product.image,
+                contentDescription = product.title,
                 modifier = Modifier
                     .size(100.dp)
                     .clip(RoundedCornerShape(8.dp)),
@@ -85,19 +85,19 @@ fun productItem(product: products) {
 
             Column {
                 Text(
-                    text = products.title,
+                    text = product.title,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = "$${products.price}",
+                    text = "$${product.price}",
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Rating: ${products.rating.rate} ",
+                    text = "Rating: ${product.rating.rate} ",
                     style = MaterialTheme.typography.bodySmall
                 )
             }
