@@ -6,7 +6,7 @@ It displays product using lazyColumn
 
 Each Item Shows :-
 Product Image
-Product Title
+Product Title 
 Price
 
 Tech Stack :- 
